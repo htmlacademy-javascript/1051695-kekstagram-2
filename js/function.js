@@ -2,6 +2,7 @@
 // task 1
 const compareLength = (str, n) => str.length <= n;
 
+compareLength(' \\',5);
 
 // task 2
 const checkReverse = (str) => {
@@ -12,7 +13,7 @@ const checkReverse = (str) => {
   }
   return STR_LOW === strReverse;
 };
-
+checkReverse('00oooTooo  00');
 
 // task 3
 function findNums(par) {
@@ -25,5 +26,5 @@ function findNums(par) {
   }
   return parseInt(res, 10);
 }
-
+findNums('oo00546//.05 et');
 
