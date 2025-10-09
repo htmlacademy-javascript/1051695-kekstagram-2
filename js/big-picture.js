@@ -59,6 +59,7 @@ bigPicture.querySelector('.big-picture__cancel').addEventListener('click', () =>
 });
 
 pictures.addEventListener('click', (evt) => {
+  evt.preventDefault();
   const currentPicture = evt.target.closest('.picture');
   if (currentPicture) {
     openBigPicture(currentPicture.dataset.pictureId);
