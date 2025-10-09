@@ -55,9 +55,9 @@ const openBigPicture = (pictureId) => {
 
 
 pictures.addEventListener('click', (evt) => {
-  evt.preventDefault();
   const currentPicture = evt.target.closest('.picture');
   if (currentPicture) {
+    evt.preventDefault();
     openBigPicture(currentPicture.dataset.pictureId);
   }
 });
