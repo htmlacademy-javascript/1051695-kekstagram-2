@@ -10,19 +10,20 @@ const commentsCount = bigPicture.querySelector('.social__comment-count');
 const commentsLoader = bigPicture.querySelector('.social__comments-loader');
 const bigPictureClose = bigPicture.querySelector('.big-picture__cancel');
 
-
-const onCancelClose = () => {
-  bigPicture.classList.add('hidden');
-  document.body.classList.remove('modal-open');
-  bigPictureClose.removeEventListener('click', onCancelClose);
-
-};
-
 const onEscapeClose = (evt) => {
   if (evt.key === 'Escape') {
     onCancelClose();
   }
 };
+
+
+function onCancelClose () {
+  bigPicture.classList.add('hidden');
+  document.body.classList.remove('modal-open');
+  bigPictureClose.removeEventListener('click', onCancelClose);
+  document.removeEventListener('keydown',onEscapeClose);
+}
+
 
 const openBigPicture = (pictureId) => {
   const currentPicture = newPictures.find((el) => el.id === +pictureId);
