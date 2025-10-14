@@ -1,13 +1,13 @@
 import { newPictures } from './picture.js';
+import { renderComments, clearComments } from './show-comments.js';
 const bigPicture = document.querySelector('.big-picture');
 const pictures = document.querySelector('.pictures');
 const bigPictureImg = bigPicture.querySelector('.big-picture__img img');
 const bigPictureLikesCount = bigPicture.querySelector('.likes-count');
-const socialComments = bigPicture.querySelector('.social__comments');
-const socialCommentTemplate = socialComments.querySelector('.social__comment');
+
+
 const commentsCaption = bigPicture.querySelector('.social__caption');
-const commentsCount = bigPicture.querySelector('.social__comment-count');
-const commentsLoader = bigPicture.querySelector('.social__comments-loader');
+
 const bigPictureClose = bigPicture.querySelector('.big-picture__cancel');
 
 const onEscapeClose = (evt) => {
@@ -17,35 +17,24 @@ const onEscapeClose = (evt) => {
 };
 
 
-function onCancelClose () {
+function onCancelClose() {
+  clearComments();
   bigPicture.classList.add('hidden');
   document.body.classList.remove('modal-open');
   bigPictureClose.removeEventListener('click', onCancelClose);
-  document.removeEventListener('keydown',onEscapeClose);
+  document.removeEventListener('keydown', onEscapeClose);
 }
 
 
 const openBigPicture = (pictureId) => {
   const currentPicture = newPictures.find((el) => el.id === +pictureId);
-  const commentsFragment = document.createDocumentFragment();
+
 
   bigPictureImg.src = currentPicture.url;
   bigPictureLikesCount.textContent = currentPicture.likes;
-  socialComments.innerHTML = '';
   commentsCaption.textContent = currentPicture.description;
-  commentsCount.classList.add('hidden');
-  commentsLoader.classList.add('hidden');
+  renderComments(currentPicture.comments);
 
-  currentPicture.comments.forEach((el) => {
-    const socialComment = socialCommentTemplate.cloneNode(true);
-
-    socialComment.querySelector('.social__picture').src = el.avatar;
-    socialComment.querySelector('.social__picture').alt = el.name;
-    socialComment.querySelector('.social__text').textContent = el.message;
-
-    commentsFragment.append(socialComment);
-  });
-  socialComments.append(commentsFragment);
 
   bigPicture.classList.remove('hidden');
   document.body.classList.add('modal-open');
