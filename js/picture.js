@@ -1,11 +1,10 @@
-import { createObjects } from './data.js';
+import { photos } from './data.js';
 
 const pictures = document.querySelector('.pictures');
 const pictureTemplate = document.querySelector('#picture').content.querySelector('.picture');
-const newPictures = createObjects();
 const newPicturesFragment = document.createDocumentFragment();
 
-newPictures.forEach(({ id, url, description, likes, comments }) => {
+photos.forEach(({ id, url, description, likes, comments }) => {
   const newPictureElement = pictureTemplate.cloneNode(true);
   newPictureElement.dataset.pictureId = id;
   newPictureElement.querySelector('.picture__img').setAttribute('src', url);
@@ -16,6 +15,3 @@ newPictures.forEach(({ id, url, description, likes, comments }) => {
 });
 
 pictures.append(newPicturesFragment);
-
-export {newPictures};
-

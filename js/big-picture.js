@@ -1,4 +1,5 @@
-import { newPictures } from './picture.js';
+
+import { photos } from './data.js';
 import { renderComments, clearComments } from './show-comments.js';
 const bigPicture = document.querySelector('.big-picture');
 const pictures = document.querySelector('.pictures');
@@ -27,7 +28,7 @@ function onCancelClose() {
 
 
 const openBigPicture = (pictureId) => {
-  const currentPicture = newPictures.find((el) => el.id === +pictureId);
+  const currentPicture = photos.find((el) => el.id === +pictureId);
 
 
   bigPictureImg.src = currentPicture.url;
