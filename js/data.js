@@ -41,29 +41,27 @@ const COMMENTES_MAX_NUMBER = 30;
 const OBJECTS_NUMBER = 25;
 
 
-function createObjects() {
+const createId = getRandomIntegerNoRepeat(1, ID_MAX_NUMBER);
+const getPhoto = getRandomIntegerNoRepeat(1, PHOTOS_MAX_NUMBER);
+const createCommentId = getRandomIntegerNoRepeat(1, 999999999);
 
-  const createId = getRandomIntegerNoRepeat(1, ID_MAX_NUMBER);
-  const getPhoto = getRandomIntegerNoRepeat(1, PHOTOS_MAX_NUMBER);
-  const createCommentId = getRandomIntegerNoRepeat(1, 999999999);
+const createComment = () => (
+  {
+    id: createCommentId(),
+    avatar: `img/avatar-${getRandomInteger(1, AVATARS_MAX_NUMBER)}.svg`,
+    message: MESSAGES[getRandomInteger(0, MESSAGES.length - 1)],
+    name: NAMES[getRandomInteger(0, NAMES.length - 1)],
+  }
+);
 
-  const createComment = () => (
-    {
-      id: createCommentId(),
-      avatar: `img/avatar-${getRandomInteger(1, AVATARS_MAX_NUMBER)}.svg`,
-      message: MESSAGES[getRandomInteger(0, MESSAGES.length - 1)],
-      name: NAMES[getRandomInteger(0, NAMES.length - 1)],
-    }
-  );
+const createObject = () => ({
+  id: createId(),
+  url: `photos/${getPhoto()}.jpg`,
+  description: DESCRRIPTIONS[getRandomInteger(0, DESCRRIPTIONS.length - 1)],
+  likes: getRandomInteger(LIKES_MIN_NUMBER, LIKES_MAX_NUMBER),
+  comments: Array.from({ length: getRandomInteger(0, COMMENTES_MAX_NUMBER) }, createComment),
+});
 
-  const createObject = () => ({
-    id: createId(),
-    url: `photos/${getPhoto()}.jpg`,
-    description: DESCRRIPTIONS[getRandomInteger(0, DESCRRIPTIONS.length - 1)],
-    likes: getRandomInteger(LIKES_MIN_NUMBER, LIKES_MAX_NUMBER),
-    comments: Array.from({ length: getRandomInteger(0, COMMENTES_MAX_NUMBER) }, createComment),
-  });
+const photos = Array.from({ length: OBJECTS_NUMBER }, createObject);
 
-  return Array.from({ length: OBJECTS_NUMBER }, createObject);
-}
-export { createObjects };
+export { photos };
