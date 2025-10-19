@@ -20,6 +20,7 @@ const onFormOpenClick = () => {
   document.body.classList.add('modal-open');
   formCloseButton.addEventListener('click', onFormCloseClick);
   document.addEventListener('keydown', onEscapeClose);
+  formCloseButton.addEventListener('click', onFormCloseClick);
 };
 
 function onEscapeClose(evt) {
@@ -33,4 +34,4 @@ function onEscapeClose(evt) {
 }
 
 imgUploadFile.addEventListener('change', onFormOpenClick);
-formCloseButton.addEventListener('click', onFormCloseClick);
+
