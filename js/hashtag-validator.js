@@ -1,0 +1,31 @@
+const hashtagInput = document.querySelector('.text__hashtags');
+const formUpload = document.querySelector('.img-upload__form');
+
+const pristine = new Pristine(formUpload, {
+  classTo: 'img-upload__field-wrapper',
+  errorClass: 'img-upload__field-wrapper--error',
+  errorTextParent: 'img-upload__field-wrapper'
+});
+
+const validateHashtag = (value) => {
+
+  const hashtags = value.toLowerCase().trim().split(' ');
+  const filteredHashtegs = hashtags.filter((el) => el !== '');
+  const hashtagReg = /^#[a-zа-яё0-9]{1,19}$/i;
+  let res = true;
+
+  res = !filteredHashtegs.some((el) => !hashtagReg.test(el));
+  if (hashtags.length > 5 || new Set(filteredHashtegs).size !== filteredHashtegs.length) {
+    res = false;
+  }
+  return res;
+};
+
+pristine.addValidator(hashtagInput, validateHashtag, 'некорректное значение поля');
+formUpload.addEventListener('submit', (evt) => {
+
+  const isValid = pristine.validate();
+  if (!isValid) {
+    evt.preventDefault();
+  }
+});
