@@ -15,7 +15,7 @@ const validateHashtag = (value) => {
   let res = true;
 
   res = !filteredHashtegs.some((el) => !hashtagReg.test(el));
-  if (hashtags.length > 5 || new Set(filteredHashtegs).size !== filteredHashtegs.length) {
+  if (filteredHashtegs.length > 5 || new Set(filteredHashtegs).size !== filteredHashtegs.length) {
     res = false;
   }
   return res;
