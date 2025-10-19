@@ -9,13 +9,12 @@ const pristine = new Pristine(formUpload, {
 
 const validateHashtag = (value) => {
 
-  const hashtags = value.toLowerCase().trim().split(' ');
-  const filteredHashtegs = hashtags.filter((el) => el !== '');
+  const hashtags = value.toLowerCase().trim().split(' ').filter((el) => el !== '');
   const hashtagReg = /^#[a-zа-яё0-9]{1,19}$/i;
   let res = true;
 
-  res = !filteredHashtegs.some((el) => !hashtagReg.test(el));
-  if (filteredHashtegs.length > 5 || new Set(filteredHashtegs).size !== filteredHashtegs.length) {
+  res = !hashtags.some((el) => !hashtagReg.test(el));
+  if (hashtags.length > 5 || new Set(hashtags).size !== hashtags.length) {
     res = false;
   }
   return res;
