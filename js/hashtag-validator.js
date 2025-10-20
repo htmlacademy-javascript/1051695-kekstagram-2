@@ -1,3 +1,4 @@
+const MAX_HASHTAG_NUMBER = 5;
 const hashtagInput = document.querySelector('.text__hashtags');
 const formUpload = document.querySelector('.img-upload__form');
 
@@ -13,8 +14,8 @@ const validateHashtag = (value) => {
   const hashtagReg = /^#[a-zа-яё0-9]{1,19}$/i;
   let res = true;
 
-  res = !hashtags.some((el) => !hashtagReg.test(el));
-  if (hashtags.length > 5 || new Set(hashtags).size !== hashtags.length) {
+  res = hashtags.every((el) => hashtagReg.test(el));
+  if (hashtags.length > MAX_HASHTAG_NUMBER || new Set(hashtags).size !== hashtags.length) {
     res = false;
   }
   return res;
