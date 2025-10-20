@@ -4,7 +4,8 @@ const formImgUploadOpen = document.querySelector('.img-upload__overlay');
 const imgUploadFile = document.querySelector('#upload-file');
 const hashtagInput = document.querySelector('.text__hashtags');
 const commentInput = document.querySelector('.text__description');
-
+const pristineErrors = document.querySelectorAll('.pristine-error');
+const imgUploadWrappers = document.querySelectorAll('.img-upload__field-wrapper');
 
 const onFormCloseClick = () => {
   formImgUploadOpen.classList.add('hidden');
@@ -13,6 +14,8 @@ const onFormCloseClick = () => {
   document.removeEventListener('keydown', onEscapeClose);
   imgUploadFile.value = '';
   formUpload.reset();
+  Array.from(pristineErrors).forEach((el) => el.remove());
+  Array.from(imgUploadWrappers).forEach((el) => el.classList.remove('img-upload__field-wrapper--error'));
 };
 
 const onFormOpenClick = () => {

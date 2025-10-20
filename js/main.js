@@ -1,4 +1,4 @@
 import './picture.js';
 import './big-picture.js';
 import'./photo-loader.js';
-import'./hashtag-validator.js';
+import'./validator.js';
