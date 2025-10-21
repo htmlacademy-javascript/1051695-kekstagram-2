@@ -24,7 +24,7 @@ const validateHashtagRepeat = (value) => {
   return set === getHashtags(value).length;
 };
 
-const validateComment = (value) => value.length < MAX_COMMENT_LENGTH;
+const validateComment = (value) => value.length <= MAX_COMMENT_LENGTH;
 
 pristine.addValidator(hashtagInput, validateHashtagReg, 'невалидный хэштег');
 pristine.addValidator(hashtagInput, validateHashtagNumber, 'превышено количество хэштегов');
