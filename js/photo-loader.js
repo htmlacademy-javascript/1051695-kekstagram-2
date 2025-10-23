@@ -8,7 +8,7 @@ const formImgUploadOpen = document.querySelector('.img-upload__overlay');
 const imgUploadFile = document.querySelector('#upload-file');
 const hashtagInput = document.querySelector('.text__hashtags');
 const commentInput = document.querySelector('.text__description');
-const pristineErrors = document.querySelectorAll('.pristine-error');
+
 const imgUploadWrappers = document.querySelectorAll('.img-upload__field-wrapper');
 const effectLevel = document.querySelector('.effect-level');
 
@@ -22,21 +22,20 @@ let scale = MAX_SCALE;
 const onFormCloseClick = () => {
   formImgUploadOpen.classList.add('hidden');
   document.body.classList.remove('modal-open');
-  formCloseButton.removeEventListener('click', onFormCloseClick);
   document.removeEventListener('keydown', onEscapeClose);
   imgUploadFile.value = '';
   formUpload.reset();
-
 };
 
 const onFormOpenClick = () => {
+  const pristineErrors = document.querySelectorAll('.pristine-error');
   formImgUploadOpen.classList.remove('hidden');
   document.body.classList.add('modal-open');
   formCloseButton.addEventListener('click', onFormCloseClick);
   document.addEventListener('keydown', onEscapeClose);
   effectLevel.classList.add('hidden');
-  Array.from(pristineErrors).forEach((el) => el.remove());
-  Array.from(imgUploadWrappers).forEach((el) => el.classList.remove('img-upload__field-wrapper--error'));
+  pristineErrors.forEach((el) => el.remove());
+  imgUploadWrappers.forEach((el) => el.classList.remove('img-upload__field-wrapper--error'));
   img.style.filter = 'none';
   scale = MAX_SCALE;
   scaleInput.value = `${scale * 100}% `;
