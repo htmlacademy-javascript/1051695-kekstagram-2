@@ -26,8 +26,7 @@ const onFormCloseClick = () => {
   document.removeEventListener('keydown', onEscapeClose);
   imgUploadFile.value = '';
   formUpload.reset();
-  Array.from(pristineErrors).forEach((el) => el.remove());
-  Array.from(imgUploadWrappers).forEach((el) => el.classList.remove('img-upload__field-wrapper--error'));
+
 };
 
 const onFormOpenClick = () => {
@@ -36,6 +35,8 @@ const onFormOpenClick = () => {
   formCloseButton.addEventListener('click', onFormCloseClick);
   document.addEventListener('keydown', onEscapeClose);
   effectLevel.classList.add('hidden');
+  Array.from(pristineErrors).forEach((el) => el.remove());
+  Array.from(imgUploadWrappers).forEach((el) => el.classList.remove('img-upload__field-wrapper--error'));
   img.style.filter = 'none';
   scale = MAX_SCALE;
   scaleInput.value = `${scale * 100}% `;
