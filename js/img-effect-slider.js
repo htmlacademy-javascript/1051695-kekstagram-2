@@ -23,80 +23,82 @@ slider.noUiSlider.on('update', () => {
   effectLevelValue.value = slider.noUiSlider.get();
 });
 
+const effectOptions = {
+  chrome: {
+    range: {
+      'min': 0,
+      'max': 1
+    },
+    start: 1,
+    step: .1
+  },
+  sepia: {
+    range: {
+      'min': 0,
+      'max': 1
+    },
+    start: 1,
+    step: .1
+  },
+  marvin: {
+    range: {
+      'min': 0,
+      'max': 100
+    },
+    start: 100,
+    step: 1
+  },
+  phobos: {
+    range: {
+      'min': 0,
+      'max': 3
+    },
+    start: 3,
+    step: .1
+  },
+  heat: {
+    range: {
+      'min': 1,
+      'max': 3
+    },
+    start: 3,
+    step: .1
+  }
+};
+const effectHandlers = {
+  chrome: () => {
+    img.style.filter = `grayscale(${effectLevelValue.value})`;
+  },
+  sepia: () => {
+    img.style.filter = `sepia(${effectLevelValue.value})`;
+  },
+  marvin: () => {
+    img.style.filter = `invert(${effectLevelValue.value}%)`;
+  },
+  phobos: () => {
+    img.style.filter = `blur(${effectLevelValue.value}px)`;
+  },
+  heat: () => {
+    img.style.filter = `brightness(${effectLevelValue.value})`;
+  }
+};
 
 const onEffectChange = (evt) => {
   const effect = evt.target.value;
 
   if (effect === 'none') {
     effectLevel.classList.add('hidden');
+    img.style.filter = 'none';
   } else {
     effectLevel.classList.remove('hidden');
   }
 
-  if (effect === 'none') {
-    img.style.filter = 'none';
-  } else if (effect === 'chrome') {
-    slider.noUiSlider.updateOptions({
-      range: {
-        'min': 0,
-        'max': 1
-      },
-      start: 1,
-      step: .1
-    });
-    slider.noUiSlider.on('update', () => {
-      img.style.filter = `grayscale(${effectLevelValue.value})`;
-    });
-  } else if (effect === 'sepia') {
-    slider.noUiSlider.updateOptions({
-      range: {
-        'min': 0,
-        'max': 1
-      },
-      start: 1,
-      step: .1
-    });
-    slider.noUiSlider.on('update', () => {
-      img.style.filter = `sepia(${effectLevelValue.value})`;
-    });
-  } else if (effect === 'marvin') {
-    slider.noUiSlider.updateOptions({
-      range: {
-        'min': 0,
-        'max': 100
-      },
-      start: 100,
-      step: 1
-    });
-    slider.noUiSlider.on('update', () => {
-      img.style.filter = `invert(${effectLevelValue.value}%)`;
-    });
-  } else if (effect === 'phobos') {
-    slider.noUiSlider.updateOptions({
-      range: {
-        'min': 0,
-        'max': 3
-      },
-      start: 3,
-      step: .1
-    });
-    slider.noUiSlider.on('update', () => {
-      img.style.filter = `blur(${effectLevelValue.value}px)`;
-    });
-  } else if (effect === 'heat') {
-    slider.noUiSlider.updateOptions({
-      range: {
-        'min': 1,
-        'max': 3
-      },
-      start: 3,
-      step: .1
-    });
-    slider.noUiSlider.on('update', () => {
-      img.style.filter = `brightness(${effectLevelValue.value})`;
-    });
+  if (effectOptions[effect]) {
+    slider.noUiSlider.updateOptions(effectOptions[effect]);
+    slider.noUiSlider.on('update', effectHandlers[effect]);
   }
 };
+
 
 effectsList.addEventListener('change', onEffectChange);
 
