@@ -51,3 +51,4 @@ function onEscapeClose(evt) {
 
 imgUploadFile.addEventListener('change', onFormOpenClick);
 
+// export {onFormCloseClick};

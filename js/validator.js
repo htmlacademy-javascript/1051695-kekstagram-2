@@ -31,10 +31,22 @@ pristine.addValidator(hashtagInput, validateHashtagNumber, 'превышено �
 pristine.addValidator(hashtagInput, validateHashtagRepeat, 'хэштеги повторяются');
 pristine.addValidator(commentInput, validateComment, 'превышена длина комментария');
 
-formUpload.addEventListener('submit', (evt) => {
-
-  const isValid = pristine.validate();
-  if (!isValid) {
+const setUserFormSubmit = (onSuccess) => {
+  formUpload.addEventListener('submit', (evt) => {
     evt.preventDefault();
-  }
-});
+    const isValid = pristine.validate();
+    if (isValid) {
+      const formData = new FormData(evt.target);
+      fetch(
+        'https://31.javascript.htmlacademy.pro/kekstagram',
+        {
+          method: 'POST',
+          body: formData,
+        }
+      )
+        .then(onSuccess);
+    }
+  });
+};
+
+export { setUserFormSubmit };
