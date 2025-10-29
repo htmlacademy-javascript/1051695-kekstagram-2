@@ -31,6 +31,7 @@ pristine.addValidator(hashtagInput, validateHashtagNumber, 'превышено �
 pristine.addValidator(hashtagInput, validateHashtagRepeat, 'хэштеги повторяются');
 pristine.addValidator(commentInput, validateComment, 'превышена длина комментария');
 
+
 const setUserFormSubmit = (onSuccess) => {
   formUpload.addEventListener('submit', (evt) => {
     evt.preventDefault();
