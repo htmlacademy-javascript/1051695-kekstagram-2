@@ -44,7 +44,40 @@ const setUserFormSubmit = (onSuccess) => {
           body: formData,
         }
       )
-        .then(onSuccess);
+        .then(((response) => {
+          if (!response.ok) {
+            throw new Error();
+          }
+        }))
+        .then(onSuccess)
+        .catch(() => {
+
+          if (document.querySelector('.error')) {
+            document.querySelector('.error').classList.remove('hidden');
+          }
+
+          const dataErrorMessage = document.querySelector('#error').content;
+          document.body.append(dataErrorMessage);
+          const errorButton = document.querySelector('.error__button');
+          const onEscapeClose = (event) => {
+            if (event.key === 'Escape') {
+              onErrorButtonClose();
+            }
+          };
+          const onDocumentClickClose = (event) => {
+            if (document.querySelector('.error') && !document.querySelector('.error__inner').contains(event.target)) {
+              onErrorButtonClose();
+            }
+          };
+          function onErrorButtonClose() {
+            document.querySelector('.error').classList.add('hidden');
+            document.removeEventListener('keydown', onEscapeClose);
+            document.removeEventListener('click', onDocumentClickClose);
+          }
+          errorButton.addEventListener('click', onErrorButtonClose);
+          document.addEventListener('keydown', onEscapeClose);
+          document.addEventListener('click', onDocumentClickClose);
+        });
     }
   });
 };

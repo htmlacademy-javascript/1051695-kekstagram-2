@@ -61,7 +61,7 @@ pictures.addEventListener('click', (evt) => {
 // };
 
 // // выполнение функции при выборки файла
-// document.querySelector('#upload-file').addEventListener('change', loadImageFile);
+// document.query Selector('#upload-file').addEventListener('change', loadImageFile);
 
 // // функция выборки файла
 // function loadImageFile() {

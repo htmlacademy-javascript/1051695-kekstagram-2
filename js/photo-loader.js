@@ -31,7 +31,9 @@ const onFormOpenClick = () => {
   formCloseButton.addEventListener('click', onFormCloseClick);
   document.addEventListener('keydown', onEscapeClose);
   effectLevel.classList.add('hidden');
-  pristineErrors.forEach((el) => el.remove());
+  pristineErrors.forEach((el) => {
+    el.innerHTML = '';
+  });
   imgUploadWrappers.forEach((el) => el.classList.remove('img-upload__field-wrapper--error'));
   img.style.filter = 'none';
   scale = MAX_SCALE;
@@ -41,7 +43,7 @@ const onFormOpenClick = () => {
 
 function onEscapeClose(evt) {
   if (evt.key === 'Escape') {
-    if (document.activeElement === hashtagInput || document.activeElement === commentInput) {
+    if (document.activeElement === hashtagInput || document.activeElement === commentInput || document.querySelector('.error') && !document.querySelector('.error').classList.contains('hidden')) {
       evt.stopPropagation();
     } else {
       onFormCloseClick();
@@ -51,4 +53,4 @@ function onEscapeClose(evt) {
 
 imgUploadFile.addEventListener('change', onFormOpenClick);
 
-// export {onFormCloseClick};
+export { onFormCloseClick };
