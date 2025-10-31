@@ -43,7 +43,7 @@ const onFormOpenClick = () => {
 
 function onEscapeClose(evt) {
   if (evt.key === 'Escape') {
-    if (document.activeElement === hashtagInput || document.activeElement === commentInput || document.querySelector('.error') && !document.querySelector('.error').classList.contains('hidden')) {
+    if (document.activeElement === hashtagInput || document.activeElement === commentInput || document.querySelector('.error')) {
       evt.stopPropagation();
     } else {
       onFormCloseClick();

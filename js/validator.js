@@ -1,3 +1,5 @@
+
+
 const MAX_HASHTAG_NUMBER = 5;
 const MAX_COMMENT_LENGTH = 140;
 
@@ -31,55 +33,4 @@ pristine.addValidator(hashtagInput, validateHashtagNumber, 'превышено �
 pristine.addValidator(hashtagInput, validateHashtagRepeat, 'хэштеги повторяются');
 pristine.addValidator(commentInput, validateComment, 'превышена длина комментария');
 
-const setUserFormSubmit = (onSuccess) => {
-  formUpload.addEventListener('submit', (evt) => {
-    evt.preventDefault();
-    const isValid = pristine.validate();
-    if (isValid) {
-      const formData = new FormData(evt.target);
-      fetch(
-        'https://31.javascript.htmlacademy.pro/kekstagram',
-        {
-          method: 'POST',
-          body: formData,
-        }
-      )
-        .then(((response) => {
-          if (!response.ok) {
-            throw new Error();
-          }
-        }))
-        .then(onSuccess)
-        .catch(() => {
-
-          if (document.querySelector('.error')) {
-            document.querySelector('.error').classList.remove('hidden');
-          }
-
-          const dataErrorMessage = document.querySelector('#error').content;
-          document.body.append(dataErrorMessage);
-          const errorButton = document.querySelector('.error__button');
-          const onEscapeClose = (event) => {
-            if (event.key === 'Escape') {
-              onErrorButtonClose();
-            }
-          };
-          const onDocumentClickClose = (event) => {
-            if (document.querySelector('.error') && !document.querySelector('.error__inner').contains(event.target)) {
-              onErrorButtonClose();
-            }
-          };
-          function onErrorButtonClose() {
-            document.querySelector('.error').classList.add('hidden');
-            document.removeEventListener('keydown', onEscapeClose);
-            document.removeEventListener('click', onDocumentClickClose);
-          }
-          errorButton.addEventListener('click', onErrorButtonClose);
-          document.addEventListener('keydown', onEscapeClose);
-          document.addEventListener('click', onDocumentClickClose);
-        });
-    }
-  });
-};
-
-export { setUserFormSubmit };
+export { pristine, formUpload };
