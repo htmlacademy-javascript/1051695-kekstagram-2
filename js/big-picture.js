@@ -1,5 +1,5 @@
 
-import { photos } from './data.js';
+import { serverPhotos } from './api.js';
 import { renderComments, clearComments } from './show-comments.js';
 const bigPicture = document.querySelector('.big-picture');
 const pictures = document.querySelector('.pictures');
@@ -28,7 +28,7 @@ function onCancelClose() {
 
 
 const openBigPicture = (pictureId) => {
-  const currentPicture = photos.find((el) => el.id === +pictureId);
+  const currentPicture = serverPhotos.find((el) => el.id === +pictureId);
 
 
   bigPictureImg.src = currentPicture.url;
@@ -53,4 +53,18 @@ pictures.addEventListener('click', (evt) => {
   }
 });
 
+// const FReader = new FileReader();
 
+// // событие, когда файл загрузится
+// FReader.onload = function (evt) {
+//   document.querySelector('.img-upload__preview img').src = evt.target.result;
+// };
+
+// // выполнение функции при выборки файла
+// document.querySelector('#upload-file').addEventListener('change', loadImageFile);
+
+// // функция выборки файла
+// function loadImageFile() {
+//   const file = document.querySelector('#upload-file').files[0];
+//   FReader.readAsDataURL(file);
+// }
