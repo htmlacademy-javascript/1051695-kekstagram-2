@@ -20,11 +20,12 @@ fetch('https://31.javascript.htmlacademy.pro/kekstagram/data')
     }, 5000);
   });
 
+
 formUpload.addEventListener('submit', (evt) => {
-  submitButton.disabled = 'true';
   evt.preventDefault();
   const isValid = pristine.validate();
   if (isValid) {
+    submitButton.disabled = 'true';
     const formData = new FormData(evt.target);
     fetch(
       'https://31.javascript.htmlacademy.pro/kekstagram',
