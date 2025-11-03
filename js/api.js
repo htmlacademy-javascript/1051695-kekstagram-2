@@ -10,6 +10,7 @@ fetch('https://31.javascript.htmlacademy.pro/kekstagram/data')
   .then((photos) => {
     createPhotos(photos);
     serverPhotos = photos;
+    document.querySelector('.img-filters').classList.remove('img-filters--inactive');
   }
   )
   .catch(() => {
