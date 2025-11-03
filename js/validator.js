@@ -1,3 +1,5 @@
+
+
 const MAX_HASHTAG_NUMBER = 5;
 const MAX_COMMENT_LENGTH = 140;
 
@@ -31,10 +33,4 @@ pristine.addValidator(hashtagInput, validateHashtagNumber, 'превышено �
 pristine.addValidator(hashtagInput, validateHashtagRepeat, 'хэштеги повторяются');
 pristine.addValidator(commentInput, validateComment, 'превышена длина комментария');
 
-formUpload.addEventListener('submit', (evt) => {
-
-  const isValid = pristine.validate();
-  if (!isValid) {
-    evt.preventDefault();
-  }
-});
+export { pristine, formUpload };
