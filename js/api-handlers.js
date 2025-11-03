@@ -1,24 +1,24 @@
 import { onFormCloseClick } from './photo-loader.js';
 export const submitButton = document.querySelector('.img-upload__submit');
 
-const onEscapeErrorClose = (event) => {
-  if (event.key === 'Escape') {
+const onEscapeErrorClose = (evt) => {
+  if (evt.key === 'Escape') {
     onErrorButtonClose();
   }
 };
-const onEscapeSuccessClose = (event) => {
-  if (event.key === 'Escape') {
+const onEscapeSuccessClose = (evt) => {
+  if (evt.key === 'Escape') {
     onSuccessButtonClose();
   }
 };
 
-const onDocumentClickErrorClose = (event) => {
-  if (document.querySelector('.error') && !document.querySelector('.error__inner').contains(event.target)) {
+const onDocumentClickErrorClose = (evt) => {
+  if (document.querySelector('.error') && !document.querySelector('.error__inner').contains(evt.target)) {
     onErrorButtonClose();
   }
 };
-const onDocumentClickSuccessClose = (event) => {
-  if (document.querySelector('.success') && !document.querySelector('.success__inner').contains(event.target)) {
+const onDocumentClickSuccessClose = (evt) => {
+  if (document.querySelector('.success') && !document.querySelector('.success__inner').contains(evt.target)) {
     onSuccessButtonClose();
   }
 };
