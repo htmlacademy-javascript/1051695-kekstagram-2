@@ -16,7 +16,7 @@ const applyFilter = () => {
       filteredPictures = serverPhotos.toSorted((a, b) => +b.querySelector('.picture-likes') - +a.querySelector('.picture-likes'));
   }
   serverPhotos = filteredPictures;
-  console.log(filteredPictures);
+  // console.log(filteredPictures);
   return filteredPictures;
 };
 
