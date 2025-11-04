@@ -1,3 +1,5 @@
+const DEBOUNCE_DELAY = 500;
+
 function getRandomInteger(min, max) {
   const lower = Math.ceil(Math.min(Math.abs(min), Math.abs(max)));
   const upper = Math.floor(Math.max(Math.abs(min), Math.abs(max)));
@@ -22,5 +24,13 @@ function getRandomIntegerNoRepeat(min, max) {
   };
 }
 
-export {getRandomInteger,getRandomIntegerNoRepeat};
+const debounce = (callback, timeoutDelay) => {
+  let timeoutId;
+  return (...rest) => {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => callback.apply(this, rest), timeoutDelay);
+  };
+};
+
+export {getRandomInteger,getRandomIntegerNoRepeat, debounce, DEBOUNCE_DELAY};
 

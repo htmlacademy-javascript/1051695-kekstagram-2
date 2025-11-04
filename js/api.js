@@ -2,7 +2,7 @@ import { createPhotos } from './picture.js';
 import { onError, onResponse, onSuccess, submitButton } from './api-handlers.js';
 import { pristine, formUpload } from './validator.js';
 
-
+const ERROR_MESSAGE_DELAY = 5000;
 let serverPhotos = [];
 fetch('https://31.javascript.htmlacademy.pro/kekstagram/data')
   .then(onResponse)
@@ -10,6 +10,7 @@ fetch('https://31.javascript.htmlacademy.pro/kekstagram/data')
   .then((photos) => {
     createPhotos(photos);
     serverPhotos = photos;
+    document.querySelector('.img-filters').classList.remove('img-filters--inactive');
   }
   )
   .catch(() => {
@@ -17,7 +18,7 @@ fetch('https://31.javascript.htmlacademy.pro/kekstagram/data')
     document.body.append(dataErrorMessage);
     setTimeout(() => {
       document.querySelector('.data-error').remove();
-    }, 5000);
+    }, ERROR_MESSAGE_DELAY);
   });
 
 
@@ -39,7 +40,6 @@ formUpload.addEventListener('submit', (evt) => {
       .catch(onError);
   }
 });
-
 
 export { serverPhotos };
 

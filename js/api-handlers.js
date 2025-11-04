@@ -1,5 +1,5 @@
 import { onFormCloseClick } from './photo-loader.js';
-export const submitButton = document.querySelector('.img-upload__submit');
+const submitButton = document.querySelector('.img-upload__submit');
 
 const onEscapeErrorClose = (evt) => {
   if (evt.key === 'Escape') {
@@ -69,4 +69,4 @@ const onError = () => {
 };
 
 
-export { onError, onResponse, onSuccess };
+export { onError, onResponse, onSuccess, submitButton };
