@@ -7,6 +7,8 @@ import './filter.js';
 import { applyFilter, imgFiltersContainer } from './filter.js';
 import { createPhotos } from './picture.js';
 import { serverPhotos } from './api.js';
-imgFiltersContainer.addEventListener('click', () => {
+import { debounce, DEBOUNCE_DELAY } from './utils.js';
+
+imgFiltersContainer.addEventListener('click', debounce(() => {
   applyFilter(serverPhotos, createPhotos)();
-});
+},DEBOUNCE_DELAY));
