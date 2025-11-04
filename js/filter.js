@@ -1,6 +1,7 @@
 
 const RANDOM_PHOTOS_COUNT = 10;
 const ACTIVE_BUTTON_CLASS = 'img-filters__button--active';
+const imgFiltersContainer = document.querySelector('.img-filters__form');
 
 let currentFilter = 'filter-default';
 const applyFilter = (photos, func) =>
@@ -39,7 +40,4 @@ const onFilterChange = (evt) => {
   currentFilter = targetButton.getAttribute('id');
 };
 
-const imgFiltersContainer = document.querySelector('.img-filters__form');
-imgFiltersContainer.addEventListener('click', onFilterChange);
-export { imgFiltersContainer };
-export { applyFilter };
+export { applyFilter, onFilterChange, imgFiltersContainer };
