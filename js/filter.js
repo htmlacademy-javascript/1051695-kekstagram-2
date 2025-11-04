@@ -3,8 +3,8 @@ const RANDOM_PHOTOS_COUNT = 10;
 const ACTIVE_BUTTON_CLASS = 'img-filters__button--active';
 
 let currentFilter = 'filter-default';
-const applyFilter = (photos,func) =>
-  function () {
+const applyFilter = (photos, func) =>
+  () => {
 
     let filteredPictures = [];
     switch (currentFilter) {
@@ -12,13 +12,13 @@ const applyFilter = (photos,func) =>
         filteredPictures = photos;
         break;
       case 'filter-random':
-        filteredPictures = photos.toSorted(()=>(0.5 - Math.random())).slice(0,RANDOM_PHOTOS_COUNT);
+        filteredPictures = photos.toSorted(() => (0.5 - Math.random())).slice(0, RANDOM_PHOTOS_COUNT);
         break;
       case 'filter-discussed':
         filteredPictures = photos.toSorted((a, b) => b.comments.length - a.comments.length);
     }
 
-    document.querySelectorAll('.picture').forEach((el)=>el.remove());
+    document.querySelectorAll('.picture').forEach((el) => el.remove());
     func(filteredPictures);
   };
 
@@ -41,5 +41,5 @@ const onFilterChange = (evt) => {
 
 const imgFiltersContainer = document.querySelector('.img-filters__form');
 imgFiltersContainer.addEventListener('click', onFilterChange);
-export {imgFiltersContainer};
+export { imgFiltersContainer };
 export { applyFilter };
