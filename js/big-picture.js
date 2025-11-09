@@ -53,18 +53,3 @@ pictures.addEventListener('click', (evt) => {
   }
 });
 
-// const FReader = new FileReader();
-
-// // событие, когда файл загрузится
-// FReader.onload = function (evt) {
-//   document.querySelector('.img-upload__preview img').src = evt.target.result;
-// };
-
-// // выполнение функции при выборки файла
-// document.querySelector('#upload-file').addEventListener('change', loadImageFile);
-
-// // функция выборки файла
-// function loadImageFile() {
-//   const file = document.querySelector('#upload-file').files[0];
-//   FReader.readAsDataURL(file);
-// }
