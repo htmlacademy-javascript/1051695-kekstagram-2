@@ -3,6 +3,7 @@ import { onError, onResponse, onSuccess, submitButton } from './api-handlers.js'
 import { pristine, formUpload } from './validator.js';
 
 const ERROR_MESSAGE_DELAY = 5000;
+const dataErrorMessage = document.querySelector('#data-error').content;
 let serverPhotos = [];
 fetch('https://31.javascript.htmlacademy.pro/kekstagram/data')
   .then(onResponse)
@@ -14,7 +15,6 @@ fetch('https://31.javascript.htmlacademy.pro/kekstagram/data')
   }
   )
   .catch(() => {
-    const dataErrorMessage = document.querySelector('#data-error').content;
     document.body.append(dataErrorMessage);
     setTimeout(() => {
       document.querySelector('.data-error').remove();
@@ -24,8 +24,7 @@ fetch('https://31.javascript.htmlacademy.pro/kekstagram/data')
 
 formUpload.addEventListener('submit', (evt) => {
   evt.preventDefault();
-  const isValid = pristine.validate();
-  if (isValid) {
+  if (pristine.validate()) {
     submitButton.disabled = 'true';
     const formData = new FormData(evt.target);
     fetch(
