@@ -25,20 +25,19 @@ const onFormCloseClick = () => {
 };
 
 const onFormOpenClick = () => {
-  const pristineErrors = document.querySelectorAll('.pristine-error');
   formImgUploadOpen.classList.remove('hidden');
   document.body.classList.add('modal-open');
   formCloseButton.addEventListener('click', onFormCloseClick);
   document.addEventListener('keydown', onEscapeClose);
   effectLevel.classList.add('hidden');
-  pristineErrors.forEach((el) => {
+  document.querySelectorAll('.pristine-error').forEach((el) => {
     el.innerHTML = '';
   });
   imgUploadWrappers.forEach((el) => el.classList.remove('img-upload__field-wrapper--error'));
   img.style.filter = 'none';
   scale = MAX_SCALE;
-  scaleInput.value = `${scale * 100}% `;
-  img.style.scale = `${scale}`;
+  scaleInput.value = `${scale * 100}%`;
+  img.style = `transform: scale(${scale})`;
 };
 
 function onEscapeClose(evt) {

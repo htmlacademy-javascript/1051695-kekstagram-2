@@ -1,4 +1,5 @@
 import { onFormCloseClick } from './photo-loader.js';
+
 const submitButton = document.querySelector('.img-upload__submit');
 
 const onEscapeErrorClose = (evt) => {
@@ -45,24 +46,19 @@ const onResponse = (response) => {
 
 const onSuccess = () => {
   onFormCloseClick();
-  const dataSuccessMessage = document.querySelector('#success').content.cloneNode(true);
+  document.body.append(document.querySelector('#success').content.cloneNode(true));
 
-  document.body.append(dataSuccessMessage);
-
-  const successButton = document.querySelector('.success__button');
-  successButton.addEventListener('click', onSuccessButtonClose);
+  document.querySelector('.success__button').addEventListener('click', onSuccessButtonClose);
   document.addEventListener('keydown', onEscapeSuccessClose);
   document.addEventListener('click', onDocumentClickSuccessClose);
 };
 
 const onError = () => {
   submitButton.removeAttribute('disabled');
-  const dataErrorMessage = document.querySelector('#error').content.cloneNode(true);
+  document.body.append(document.querySelector('#error').content.cloneNode(true));
 
-  document.body.append(dataErrorMessage);
-  const errorButton = document.querySelector('.error__button');
-  if (errorButton) {
-    errorButton.addEventListener('click', onErrorButtonClose);
+  if (document.querySelector('.error__button')) {
+    document.querySelector('.error__button').addEventListener('click', onErrorButtonClose);
     document.addEventListener('keydown', onEscapeErrorClose);
     document.addEventListener('click', onDocumentClickErrorClose);
   }

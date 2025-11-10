@@ -11,16 +11,16 @@ let scale = MAX_SCALE;
 const onMinusClick = () => {
   if (scale <= MAX_SCALE && scale > MIN_SCALE) {
     scale -= SCALE_STEP;
-    img.style.scale = `${scale}`;
-    scaleInput.value = `${scale * 100}% `;
+    img.style = `transform: scale(${scale})`;
+    scaleInput.value = `${scale * 100}%`;
   }
 };
 
 const onPlusClick = () => {
   if (scale < MAX_SCALE && scale >= MIN_SCALE) {
     scale += SCALE_STEP;
-    img.style.scale = `${scale}`;
-    scaleInput.value = `${scale * 100}% `;
+    img.style = `transform: scale(${scale})`;
+    scaleInput.value = `${scale * 100}%`;
   }
 };
 
