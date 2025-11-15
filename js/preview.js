@@ -13,7 +13,7 @@ const loadImageFile = () => {
 
     upLoadPreview.src = URL.createObjectURL(file);
     upLoadPreviewEffects.forEach((item) => {
-      item.style.backgroundImage = `url(${URL.createObjectURL(file)})`;
+      item.style.backgroundImage = `url(${upLoadPreview.src})`;
     });
   } else {
     onFormCloseClick();
