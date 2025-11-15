@@ -5,6 +5,7 @@ const fileChoser = document.querySelector('#upload-file');
 const upLoadPreview = document.querySelector('.img-upload__preview img');
 const upLoadPreviewEffects = document.querySelectorAll('.effects__preview');
 
+
 const loadImageFile = () => {
   const file = fileChoser.files[0];
   const fileName = file.name.toLowerCase();
