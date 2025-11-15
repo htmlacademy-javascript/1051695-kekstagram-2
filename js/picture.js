@@ -3,6 +3,7 @@ const picturesBlock = document.querySelector('.pictures');
 const pictureTemplate = document.querySelector('#picture').content.querySelector('.picture');
 const newPicturesFragment = document.createDocumentFragment();
 let newPictureElement;
+
 const createPhotos = (photos) => {
   photos.forEach(({ id, url, description, likes, comments }) => {
     newPictureElement = pictureTemplate.cloneNode(true);
