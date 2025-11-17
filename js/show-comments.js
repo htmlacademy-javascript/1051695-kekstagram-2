@@ -1,10 +1,11 @@
+const STEP_COUNT = 5;
 const bigPicture = document.querySelector('.big-picture');
 const socialComments = bigPicture.querySelector('.social__comments');
 const socialCommentTemplate = socialComments.querySelector('.social__comment');
 const commentsCount = bigPicture.querySelector('.social__comment-total-count');
 const commentsCurrentCount = bigPicture.querySelector('.social__comment-shown-count');
 const commentsLoader = bigPicture.querySelector('.social__comments-loader');
-const STEP_COUNT = 5;
+
 let currentCount = 0;
 let comments = [];
 
