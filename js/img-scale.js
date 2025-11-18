@@ -6,12 +6,14 @@ const scaleMinus = document.querySelector('.scale__control--smaller');
 const scalePlus = document.querySelector('.scale__control--bigger');
 const scaleInput = document.querySelector('.scale__control--value');
 const img = document.querySelector('.img-upload__preview img');
+const imgUploadFile = document.querySelector('#upload-file');
+
 let scale = MAX_SCALE;
 
 const onMinusClick = () => {
   if (scale <= MAX_SCALE && scale > MIN_SCALE) {
     scale -= SCALE_STEP;
-    img.style = `transform: scale(${scale})`;
+    img.style.scale = `${scale}`;
     scaleInput.value = `${scale * 100}%`;
   }
 };
@@ -19,10 +21,17 @@ const onMinusClick = () => {
 const onPlusClick = () => {
   if (scale < MAX_SCALE && scale >= MIN_SCALE) {
     scale += SCALE_STEP;
-    img.style = `transform: scale(${scale})`;
+    img.style.scale = `${scale}`;
     scaleInput.value = `${scale * 100}%`;
   }
 };
 
+const onUploadFileChange = () => {
+  scale = MAX_SCALE;
+  scaleInput.value = `${scale * 100}% `;
+  img.style.scale = `${scale}`;
+};
+
+imgUploadFile.addEventListener('change', onUploadFileChange);
 scaleMinus.addEventListener('click', onMinusClick);
 scalePlus.addEventListener('click', onPlusClick);
