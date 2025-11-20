@@ -37,6 +37,7 @@ const addComments = () => {
 
   currentCount += STEP_COUNT;
 };
+
 const clearComments = () => {
   currentCount = 0;
   socialComments.innerHTML = '';
@@ -44,10 +45,12 @@ const clearComments = () => {
   commentsLoader.removeEventListener('click', addComments);
 };
 
+const onCommentsLoaderClick = addComments;
+
 const renderComments = (currentComments) => {
   comments = currentComments;
   addComments();
-  commentsLoader.addEventListener('click', addComments);
+  commentsLoader.addEventListener('click', onCommentsLoaderClick);
 };
 
 export { renderComments, clearComments };

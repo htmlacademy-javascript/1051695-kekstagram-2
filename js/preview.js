@@ -4,9 +4,10 @@ const FILE_TYPES = ['jpg', 'jpeg', 'png'];
 const fileChoser = document.querySelector('#upload-file');
 const upLoadPreview = document.querySelector('.img-upload__preview img');
 const upLoadPreviewEffects = document.querySelectorAll('.effects__preview');
+const uploadFile = document.querySelector('#upload-file');
 
 
-const loadImageFile = () => {
+const onUploadFileChange = () => {
   const file = fileChoser.files[0];
   const fileName = file.name.toLowerCase();
   const matches = FILE_TYPES.some((it) => fileName.endsWith(it));
@@ -21,5 +22,5 @@ const loadImageFile = () => {
   }
 };
 
-document.querySelector('#upload-file').addEventListener('change', loadImageFile);
+uploadFile.addEventListener('change', onUploadFileChange);
 
